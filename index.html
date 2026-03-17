@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLAB Football Japan | 韓国No.1個人参加フットサル</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Configuration (Inter & Noto Sans JP for modern, clean look) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Configuration Default Theme Override -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            plab: {
+              blue: '#146EFF',
+              dark: '#0F172A',
+              light: '#F8FAFC',
+              gray: '#64748B'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      background-color: #0F172A; /* Dark background default */
+      color: #F8FAFC;         /* Light text default */
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Responsive typography clamp for different devices */
+    h1, h2 {
+      line-height: 1.2;
+    }
+    
+    /* Prevent core text from breaking into multiple lines inappropriately */
+    .keep-together {
+      white-space: nowrap;
+    }
+    
+    /* Smooth reveal animation classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Glassmorphism helpers */
+    .glass {
+      background: rgba(30, 41, 59, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Image container aspect ratios */
+    .img-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+    
+    /* Gradient text - limited usage */
+    .text-gradient {
+      background: linear-gradient(135deg, #E2E8F0, #146EFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen relative max-w-md mx-auto shadow-2xl bg-plab-dark overflow-x-hidden">
+
+  <!-- ==========================================
+       SECTION 1: HERO & TRUST INDICATORS
+       ========================================== -->
+  <section class="relative min-h-[90vh] flex flex-col justify-end pb-12 pt-6 px-6">
+    <!-- Background Hero Image -->
+    <!-- Assuming Images/0 韓国No.1.jpg is available relative to index.html -->
+    <div class="absolute inset-0 z-0">
+      <img src="Images/0%20韓国No.1.jpg" alt="PLAB Hero" class="w-full h-full object-cover opacity-60 mix-blend-overlay">
+      <!-- Gradient overlay for text readability -->
+      <div class="absolute inset-0 bg-gradient-to-t from-plab-dark via-plab-dark/80 to-transparent"></div>
+    </div>
+    
+    <!-- Hero Content -->
+    <div class="relative z-10 w-full reveal active">
+      <div class="inline-block px-3 py-1 mb-4 rounded-full bg-slate-800/80 border border-slate-600/50 text-white font-bold text-xs sm:text-sm tracking-widest uppercase">
+        ついに東京上陸
+      </div>
+      
+      <h1 class="text-[clamp(1.75rem,5vw,2.5rem)] font-black mb-4 tracking-tight keep-together">
+        韓国で圧倒的に選ばれる <span class="text-white">個人参加フットサル</span>
+      </h1>
+      
+      <p class="text-plab-light/80 font-medium mb-8 text-[clamp(0.875rem,2.5vw,1rem)]">
+        初めての方も安心して利用。<br>信頼できる個サルサービス。
+      </p>
+      
+      <!-- Trust Indicators Data Points grid -->
+      <div class="grid grid-cols-2 gap-3 mb-8">
+        <div class="glass rounded-xl p-4 text-center">
+          <p class="text-xs text-plab-gray mb-1">累計参加</p>
+          <p class="text-2xl font-bold text-white">730<span class="text-sm text-plab-blue ml-1">万件</span></p>
+        </div>
+        <div class="glass rounded-xl p-4 text-center">
+          <p class="text-xs text-plab-gray mb-1">会員数</p>
+          <p class="text-2xl font-bold text-white">90<span class="text-sm text-plab-blue ml-1">万人</span></p>
+        </div>
+        <div class="glass rounded-xl p-4 text-center">
+          <p class="text-xs text-plab-gray mb-1">年間売上</p>
+          <p class="text-2xl font-bold text-white">27<span class="text-sm text-plab-blue ml-1">億円</span></p>
+        </div>
+        <div class="glass rounded-xl p-4 text-center flex flex-col justify-center">
+          <p class="text-xs text-plab-gray mb-1">サービス満足度</p>
+          <p class="text-2xl font-bold text-white">89<span class="text-sm text-plab-blue ml-1">点</span></p>
+        </div>
+      </div>
+      
+      <button class="w-full bg-plab-blue hover:bg-blue-600 active:scale-95 transition-all text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(20,110,255,0.4)] text-lg">
+        今すぐ参加する
+      </button>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 2: LEVEL DATA
+       ========================================== -->
+  <section class="py-16 px-6 relative reveal">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-slate-800/30 rounded-full blur-[80px] -z-10"></div>
+    
+    <div class="mb-10">
+      <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-4 font-black">
+        レベルデータで、<br>もっと<span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-plab-blue/40 after:-z-10">面白い</span>フットサル
+      </h2>
+      <p class="text-plab-light/80 text-[clamp(0.875rem,2.5vw,0.9rem)] leading-relaxed">
+        N万人のデータで検証されたレベルシステム。<br>初級・中級など、レベルの近い人同士でより楽しいプレーが可能！
+      </p>
+    </div>
+    
+    <!-- Image placeholder -->
+    <div class="img-container mb-8 shadow-2xl ring-1 ring-white/10">
+      <img src="Images/1%20レベル.jpg" alt="Level System" class="w-full h-auto object-cover">
+    </div>
+
+    <!-- Features -->
+    <div class="space-y-4">
+      <div class="glass p-5 rounded-2xl flex items-start gap-4">
+        <div class="w-10 h-10 rounded-full bg-plab-blue/20 flex items-center justify-center shrink-0 mt-1">
+          <svg class="w-5 h-5 text-plab-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-white mb-1">実力が拮抗するチーム分け</h3>
+          <p class="text-sm text-plab-gray">客観的なレベルをもとにチームを分け、最初から最後まで3チームが接戦！</p>
+        </div>
+      </div>
+      
+      <div class="glass p-5 rounded-2xl flex items-start gap-4">
+        <div class="w-10 h-10 rounded-full bg-plab-blue/20 flex items-center justify-center shrink-0 mt-1">
+          <svg class="w-5 h-5 text-plab-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-white mb-1">成長を可視化</h3>
+          <p class="text-sm text-plab-gray">データが蓄積され、自分の成長過程を目で確認可能！</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 3: ROTATION SYSTEM
+       ========================================== -->
+  <section class="py-16 px-6 bg-slate-900/50 reveal">
+    <div class="mb-10 text-center">
+      <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-4 font-black">
+        PLAB独自の<br><span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-plab-blue/40 after:-z-10">ローテーション</span>システム
+      </h2>
+      <p class="text-plab-light/80 text-[clamp(0.875rem,2.5vw,0.9rem)] max-w-xs mx-auto">
+        4チームではなく「3チーム制」で圧倒的な運動量。同じ料金を払うなら、PLABが断然合理的な選択。
+      </p>
+    </div>
+
+    <!-- Image -->
+    <div class="img-container mb-10 shadow-lg">
+      <img src="Images/2%20ロテーション.jpg" alt="Rotation System" class="w-full h-auto object-cover">
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="bg-[#1E293B] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+      <div class="bg-slate-800 px-5 py-4 border-b border-white/5 flex justify-between items-center">
+        <h3 class="font-bold text-white flex-1">プレー時間比較</h3>
+        <div class="flex gap-2 text-xs font-bold w-[140px]">
+          <span class="w-1/2 text-center text-plab-blue">PLAB</span>
+          <span class="w-1/2 text-center text-plab-gray">他社 A</span>
+        </div>
+      </div>
+      
+      <div class="divide-y divide-white/5">
+        <div class="px-5 py-4 flex justify-between items-center bg-plab-blue/5">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-white">1人あたりの平均時間</p>
+          </div>
+          <div class="flex gap-2 text-base font-bold w-[140px]">
+            <span class="w-1/2 text-center text-plab-blue">65<span class="text-xs font-normal">分</span></span>
+            <span class="w-1/2 text-center text-plab-gray">48<span class="text-xs font-normal">分</span></span>
+          </div>
+        </div>
+        <div class="px-5 py-4 flex justify-between items-center relative">
+          <!-- Highlight badge -->
+          <div class="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-8 bg-plab-blue rounded-r-md"></div>
+          <div class="flex-1 ml-2">
+            <p class="text-sm font-medium text-white">フィールドプレー</p>
+          </div>
+          <div class="flex gap-2 text-base font-bold w-[140px]">
+            <span class="w-1/2 text-center text-plab-blue">52<span class="text-xs font-normal">分</span></span>
+            <span class="w-1/2 text-center text-plab-gray">38<span class="text-xs font-normal">分</span></span>
+          </div>
+        </div>
+        <div class="px-5 py-4 flex justify-between items-center opacity-100">
+          <div class="flex-1">
+            <p class="text-[clamp(0.875rem,2.5vw,1rem)] text-white/60">ゴールキーパー</p>
+          </div>
+          <div class="flex gap-2 text-[clamp(0.875rem,2.5vw,1rem)] font-medium w-[140px]">
+            <span class="w-1/2 text-center text-plab-blue">13<span class="text-xs font-normal">分</span></span>
+            <span class="w-1/2 text-center text-slate-500">10<span class="text-xs font-normal">分</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-6 flex items-start gap-3 bg-slate-800/80 border border-slate-700 p-4 rounded-xl text-sm">
+      <span class="text-xl shrink-0">🏃</span>
+      <p class="text-white leading-relaxed">体系的なローテーションと時間管理で、<strong class="text-white relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-plab-blue/50 after:-z-10">無駄なくスピーディーな進行</strong>を実現します。</p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 4: POM (Player of the Match)
+       ========================================== -->
+  <section class="py-16 px-6 relative reveal">
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-slate-800/20 rounded-full blur-[80px] -z-10"></div>
+    
+    <div class="mb-10 text-center">
+      <div class="inline-block px-3 py-1 mb-3 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
+        Culture
+      </div>
+      <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3 font-black keep-together">
+        実力よりマナー重視の <span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-plab-blue/40 after:-z-10">POM</span>
+      </h2>
+      <p class="font-medium text-white/90 mb-1 text-[clamp(1rem,3vw,1.125rem)]">Plaber of the Match</p>
+      <p class="text-plab-light/80 text-[clamp(0.875rem,2.5vw,0.9rem)]">誰でも狙える独自のMVP</p>
+    </div>
+
+    <!-- Image -->
+    <div class="img-container mb-10 ring-1 ring-white/10 rounded-2xl">
+      <img src="Images/3%20マーナ.jpg" alt="POM Culture" class="w-full h-auto object-cover">
+    </div>
+
+    <!-- Timeline steps -->
+    <div class="relative pl-6 space-y-8 border-l-2 border-slate-700 ml-3">
+      <div class="relative">
+        <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-plab-dark border-4 border-plab-blue"></div>
+        <h3 class="text-lg font-bold text-white mb-2">良い雰囲気を作った人が「今日の主役」</h3>
+        <p class="text-sm text-plab-gray leading-relaxed">上手さではなくマナー最優先。一緒にプレーする仲間をリスペクトし、良い雰囲気を作ったプレイヤーを評価します。</p>
+      </div>
+      
+      <div class="relative">
+        <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-plab-dark border-4 border-plab-blue"></div>
+        <h3 class="text-lg font-bold text-white mb-2">マネージャーが選定＆嬉しいお知らせ</h3>
+        <p class="text-sm text-plab-gray leading-relaxed">専門のマネージャーがPOMを選定。選ばれたプレーヤーにはLINEとメールで嬉しい通知が届きます。</p>
+      </div>
+      
+      <div class="relative">
+        <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-plab-blue shadow-[0_0_10px_rgba(20,110,255,0.8)]"></div>
+        <h3 class="text-lg font-bold text-white mb-2">誇らしい記録をシェア</h3>
+        <p class="text-sm text-plab-gray leading-relaxed">試合後、詳細ページで今日のPOMをチェック！美しいカード形式の記録をそのままSNSへシェアできます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 5: UI/UX CONVENIENCE & CTA
+       ========================================== -->
+  <section class="py-16 px-6 bg-gradient-to-b from-transparent to-slate-800/30 reveal pb-32">
+    <div class="text-center mb-10">
+      <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-4 font-black keep-together">
+        個サル参加が<span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-plab-blue/40 after:-z-10 mx-1">10倍</span>ラク
+      </h2>
+      <p class="text-white font-medium text-[clamp(1rem,3vw,1.125rem)]">思い立ったらすぐピッチへ！</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 mb-12">
+      <div class="glass p-5 rounded-2xl flex items-center gap-4 transform transition-transform hover:-translate-y-1">
+        <div class="text-3xl">📱</div>
+        <div>
+          <h3 class="font-bold text-white text-base">LINEでわずか10秒！</h3>
+          <p class="text-sm text-plab-gray">面倒な入力なしの超カンタン登録</p>
+        </div>
+      </div>
+      <div class="glass p-5 rounded-2xl flex items-center gap-4 transform transition-transform hover:-translate-y-1">
+        <div class="text-3xl">💳</div>
+        <div>
+          <h3 class="font-bold text-white text-base">スマートキャッシュレス</h3>
+          <p class="text-sm text-plab-gray">現地での現金払いは不要。事前決済</p>
+        </div>
+      </div>
+      <div class="glass p-5 rounded-2xl flex items-center gap-4 transform transition-transform hover:-translate-y-1 border-plab-blue/30">
+        <div class="text-3xl">👆</div>
+        <div>
+          <h3 class="font-bold text-white text-base">たった「3タップ」で参加確定</h3>
+          <p class="text-sm text-plab-gray">行きたい試合を見つけてすぐ予約完了</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="bg-gradient-to-r from-slate-800 to-slate-700 border border-slate-600 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="absolute top-0 right-0 w-32 h-32 bg-plab-blue/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3"></div>
+      
+      <div class="relative z-10">
+        <h2 class="text-[clamp(1.25rem,3.5vw,1.75rem)] font-bold text-white mb-2 keep-together">最高に楽しいフットサルを<br>今すぐ体験しよう</h2>
+        <p class="text-white/80 text-[clamp(0.875rem,2.5vw,1rem)] mb-6">初回参加の方は特別クーポンあり</p>
+        <button class="w-full bg-plab-blue text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition-all text-[clamp(1rem,3vw,1.125rem)] flex items-center justify-center gap-2 group">
+          <span>LINEで無料で始める</span>
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simple Footer -->
+  <footer class="py-8 text-center text-[clamp(0.75rem,2vw,0.875rem)] text-plab-light/60 bg-[#0b1121] px-6">
+    <div class="flex justify-center items-center gap-4 font-semibold mb-6">
+      <p>© 2026 PLAB FOOTBALL JAPAN</p>
+    </div>
+  </footer>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const reveals = document.querySelectorAll(".reveal");
+
+      function reveal() {
+        var windowHeight = window.innerHeight;
+        var elementVisible = 150;
+
+        for (var i = 0; i < reveals.length; i++) {
+          var elementTop = reveals[i].getBoundingClientRect().top;
+          if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+          }
+        }
+      }
+
+      window.addEventListener("scroll", reveal);
+      reveal(); // Trigger once on load
+    });
+  </script>
+</body>
+</html>
