@@ -254,42 +254,38 @@
 
           <div class="bg-slate-800/60 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 w-full overflow-x-auto">
             <div class="min-w-max">
-              <div class="bg-slate-800 px-5 py-4 border-b border-white/5 flex justify-between items-center text-center">
-                <h3 class="font-bold text-white flex-1 text-sm sm:text-base whitespace-nowrap text-center">プレー時間比較</h3>
-                <div class="flex gap-2 text-xs sm:text-sm font-bold w-[160px] sm:w-[200px] justify-center text-center">
-                  <span class="w-1/2 text-white whitespace-nowrap">PLAB Japan</span>
-                  <span class="w-1/2 text-slate-400 whitespace-nowrap">個サル会社 A</span>
-                </div>
+              <!-- Grid Header -->
+              <div class="bg-slate-800 px-5 py-4 border-b border-white/5 grid grid-cols-[1.5fr_1fr_1fr] gap-4 items-center">
+                <h3 class="font-bold text-white text-sm sm:text-base text-center break-keep w-full block">プレー時間比較</h3>
+                <p class="text-xs sm:text-sm font-bold text-white text-center break-keep w-full block">PLAB Japan</p>
+                <p class="text-xs sm:text-sm font-bold text-slate-400 text-center break-keep w-full block">個サル会社 A</p>
               </div>
               
+              <!-- Grid Body -->
               <div class="divide-y divide-white/5">
-                <div class="px-5 py-4 flex justify-between items-center bg-white/5">
-                  <div class="flex-1 pr-4 text-left">
-                    <p class="text-xs sm:text-sm font-medium text-white break-keep">1人あたりの平均時間</p>
+                <div class="px-5 py-4 bg-white/5 grid grid-cols-[1.5fr_1fr_1fr] gap-4 items-center">
+                  <div class="pr-2">
+                    <p class="text-xs sm:text-sm font-medium text-white break-keep w-full block text-left">1人あたりの平均時間</p>
                   </div>
-                  <div class="flex gap-2 text-sm sm:text-base font-bold w-[160px] sm:w-[200px] justify-center text-center">
-                    <span class="w-1/2 text-white whitespace-nowrap">65<span class="text-xs font-normal ml-0.5">分</span></span>
-                    <span class="w-1/2 text-slate-400 whitespace-nowrap">48<span class="text-xs font-normal ml-0.5">分</span></span>
-                  </div>
+                  <p class="text-sm sm:text-base font-bold text-white text-center break-keep w-full block">65<span class="text-xs font-normal ml-0.5">分</span></p>
+                  <p class="text-sm sm:text-base font-bold text-slate-400 text-center break-keep w-full block">48<span class="text-xs font-normal ml-0.5">分</span></p>
                 </div>
-                <div class="px-5 py-4 flex justify-between items-center relative">
-                  <div class="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-r-md"></div>
-                  <div class="flex-1 ml-3 pr-4 text-left">
-                    <p class="text-xs sm:text-sm font-medium text-white break-keep">フィールドプレー</p>
+                
+                <div class="px-5 py-4 relative grid grid-cols-[1.5fr_1fr_1fr] gap-4 items-center">
+                  <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-r-md"></div>
+                  <div class="pr-2 pl-3">
+                    <p class="text-xs sm:text-sm font-medium text-white break-keep w-full block text-left">フィールドプレー</p>
                   </div>
-                  <div class="flex gap-2 text-sm sm:text-base font-bold w-[160px] sm:w-[200px] justify-center text-center">
-                    <span class="w-1/2 text-white whitespace-nowrap">52<span class="text-xs font-normal ml-0.5">分</span></span>
-                    <span class="w-1/2 text-slate-400 whitespace-nowrap">38<span class="text-xs font-normal ml-0.5">分</span></span>
-                  </div>
+                  <p class="text-sm sm:text-base font-bold text-white text-center break-keep w-full block">52<span class="text-xs font-normal ml-0.5">分</span></p>
+                  <p class="text-sm sm:text-base font-bold text-slate-400 text-center break-keep w-full block">38<span class="text-xs font-normal ml-0.5">分</span></p>
                 </div>
-                <div class="px-5 py-4 flex justify-between items-center">
-                  <div class="flex-1 pr-4 text-left">
-                    <p class="text-xs sm:text-sm text-white/60 break-keep">ゴールキーパー</p>
+                
+                <div class="px-5 py-4 grid grid-cols-[1.5fr_1fr_1fr] gap-4 items-center">
+                  <div class="pr-2">
+                    <p class="text-xs sm:text-sm text-white/60 break-keep w-full block text-left">ゴールキーパー</p>
                   </div>
-                  <div class="flex gap-2 text-xs sm:text-sm font-medium w-[160px] sm:w-[200px] justify-center text-center">
-                    <span class="w-1/2 text-white whitespace-nowrap">13<span class="text-[10px] font-normal ml-0.5">分</span></span>
-                    <span class="w-1/2 text-slate-500 whitespace-nowrap">10<span class="text-[10px] font-normal ml-0.5">分</span></span>
-                  </div>
+                  <p class="text-xs sm:text-sm font-medium text-white text-center break-keep w-full block">13<span class="text-[10px] font-normal ml-0.5">分</span></p>
+                  <p class="text-xs sm:text-sm font-medium text-slate-500 text-center break-keep w-full block">10<span class="text-[10px] font-normal ml-0.5">分</span></p>
                 </div>
               </div>
             </div>
@@ -474,12 +470,14 @@
       const colorIndicator = document.getElementById("colorIndicator");
 
       // Elements that should become editable
-      const textSelectors = "h1, h2, h3, p, span, div.flex-1 > p";
+      const textSelectors = "h1, h2, h3, h4, !!button text skip, p, span, div.flex-1 > p";
+      const actualSelectors = "h1, h2, h3, p, span";
       const editableNodes = [];
       
       // Initialize edit IDs and load saved data
-      document.querySelectorAll(textSelectors).forEach((el, index) => {
-        if(el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'BR') || el.tagName === 'SPAN') {
+      document.querySelectorAll(actualSelectors).forEach((el, index) => {
+        // Prevent editing pure structural wrappers or icons
+        if((el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'BR') || el.tagName === 'SPAN' || el.classList.contains('block')) && !el.classList.contains('absolute')) {
           el.setAttribute("data-edit-id", "edit-node-" + index);
           editableNodes.push(el);
           
@@ -489,7 +487,17 @@
             try {
               const saved = JSON.parse(savedStr);
               if (saved.html !== undefined) el.innerHTML = saved.html;
-              if (saved.color) el.style.color = saved.color;
+              if (saved.color) {
+                el.style.color = saved.color;
+                // remove tailwind color class if inline style is applied
+                el.classList.forEach(cls => {
+                  if (cls.startsWith('text-')) {
+                    // we can't remove all text- classes since text-center/etc are needed
+                    // remove text-white, text-slate-400 etc is hard to do cleanly without knowing all colors
+                    // inline style color overrules classes anyway
+                  }
+                });
+              }
               
               if (saved.align) {
                 el.classList.remove('text-left', 'text-center', 'text-right');
