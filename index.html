@@ -86,6 +86,27 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
+    /* 
+     * ======================================
+     * Edit Mode Styles
+     * ======================================
+     */
+    body.is-editing [contenteditable="true"] {
+      outline: 2px dashed rgba(255,255,255,0.2);
+      outline-offset: 4px;
+      border-radius: 4px;
+      transition: outline 0.2s, background-color 0.2s;
+      cursor: text;
+    }
+    body.is-editing [contenteditable="true"]:hover {
+      outline: 2px dashed rgba(20, 110, 255, 0.6);
+      background-color: rgba(255,255,255,0.05);
+    }
+    body.is-editing [contenteditable="true"]:focus {
+      outline: 2px solid #146EFF;
+      background-color: rgba(20, 110, 255, 0.1);
+    }
   </style>
 </head>
 <body class="antialiased min-h-screen relative w-full mx-auto shadow-2xl bg-plab-dark overflow-x-hidden">
@@ -401,6 +422,197 @@
 
       window.addEventListener("scroll", reveal);
       reveal(); // Trigger once on load
+    });
+  </script>
+
+  <!-- ==========================================
+       EDIT MODE: UI & LOGIC
+       ========================================== -->
+       
+  <!-- Floating Edit Toggle Button -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="editToggleBtn" class="bg-plab-blue hover:bg-blue-600 text-white shadow-[0_4px_20px_rgba(0,0,0,0.5)] border border-white/20 px-4 py-3 rounded-full font-bold flex items-center gap-2 transition-transform transform hover:scale-105 active:scale-95">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+      <span id="editToggleText">편집 모드 켜기</span>
+    </button>
+  </div>
+
+  <!-- Contextual Edit Menu (Hidden by default) -->
+  <div id="editContextMenu" class="fixed z-[60] bg-slate-800 border border-slate-600 shadow-2xl rounded-lg p-2 flex gap-2 items-center opacity-0 pointer-events-none transition-opacity duration-200 transform -translate-x-1/2 mt-2" style="left: 0; top: 0;">
+    <!-- Alignment Group -->
+    <div class="flex bg-slate-900 rounded-md overflow-hidden ring-1 ring-white/10">
+      <button data-align="text-left" class="align-btn p-2 text-white/70 hover:text-white hover:bg-white/10 transition-colors" title="왼쪽 정렬">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h16"></path></svg>
+      </button>
+      <button data-align="text-center" class="align-btn p-2 text-white/70 hover:text-white border-l border-white/10 hover:bg-white/10 transition-colors" title="가운데 정렬">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M7 12h10M4 18h16"></path></svg>
+      </button>
+      <button data-align="text-right" class="align-btn p-2 text-white/70 hover:text-white border-l border-white/10 hover:bg-white/10 transition-colors" title="오른쪽 정렬">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M10 12h10M4 18h16"></path></svg>
+      </button>
+    </div>
+    
+    <div class="w-px h-6 bg-slate-600"></div> <!-- Divider -->
+    
+    <!-- Color Picker -->
+    <div class="relative flex items-center justify-center w-8 h-8 rounded-full overflow-hidden border-2 border-white/20 hover:border-white/50 cursor-pointer" title="색상 변경">
+      <input type="color" id="editColorPicker" value="#ffffff" class="absolute inset-[-10px] w-[50px] h-[50px] cursor-pointer opacity-0 z-10 p-0 m-0 border-0">
+      <div id="colorIndicator" class="w-full h-full bg-white pointer-events-none"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let isEditMode = false;
+      let activeElement = null;
+      
+      const toggleBtn = document.getElementById("editToggleBtn");
+      const toggleText = document.getElementById("editToggleText");
+      const contextMenu = document.getElementById("editContextMenu");
+      const alignBtns = document.querySelectorAll(".align-btn");
+      const colorPicker = document.getElementById("editColorPicker");
+      const colorIndicator = document.getElementById("colorIndicator");
+
+      // Elements that should become editable
+      const textSelectors = "h1, h2, h3, p, span, div.flex-1 > p";
+      
+      // Update color indicator when picker changes
+      colorPicker.addEventListener('input', (e) => {
+        const color = e.target.value;
+        colorIndicator.style.backgroundColor = color;
+        if (activeElement) {
+          activeElement.style.color = color;
+        }
+      });
+
+      // Handle alignment clicks
+      alignBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (!activeElement) return;
+
+          const alignClass = btn.getAttribute('data-align');
+          
+          // Remove all existing align classes
+          activeElement.classList.remove('text-left', 'text-center', 'text-right');
+          activeElement.style.textAlign = ''; // Clear inline styles just in case
+          
+          // Add newly selected align class
+          activeElement.classList.add(alignClass);
+          
+          // Highlight active button
+          updateActiveAlignButton(alignClass);
+        });
+      });
+
+      function updateActiveAlignButton(currentAlign) {
+        alignBtns.forEach(btn => {
+          if (btn.getAttribute('data-align') === currentAlign) {
+            btn.classList.add('text-white', 'bg-white/20');
+            btn.classList.remove('text-white/70');
+          } else {
+            btn.classList.remove('text-white', 'bg-white/20');
+            btn.classList.add('text-white/70');
+          }
+        });
+      }
+
+      function hideContextMenu() {
+        contextMenu.classList.remove('opacity-100');
+        contextMenu.classList.add('opacity-0', 'pointer-events-none');
+      }
+
+      function showContextMenu(element) {
+        activeElement = element;
+        const rect = element.getBoundingClientRect();
+        
+        // Position menu directly below the element, centered.
+        contextMenu.style.top = `${rect.bottom + window.scrollY}px`;
+        contextMenu.style.left = `${rect.left + (rect.width / 2)}px`;
+        
+        // Show menu
+        contextMenu.classList.remove('opacity-0', 'pointer-events-none');
+        contextMenu.classList.add('opacity-100');
+
+        // Sync Toolbar State with Element
+        // 1. Sync Alignment
+        let currentAlign = 'text-left'; // default
+        if (element.classList.contains('text-center')) currentAlign = 'text-center';
+        if (element.classList.contains('text-right')) currentAlign = 'text-right';
+        updateActiveAlignButton(currentAlign);
+
+        // 2. Sync Color (get computed style)
+        const computedColor = window.getComputedStyle(element).color;
+        // Convert rgb() to hex for input[type=color]
+        const rgbForm = computedColor.match(/\d+/g);
+        if (rgbForm && rgbForm.length >= 3) {
+          const hex = "#" + rgbForm.slice(0, 3).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
+          colorPicker.value = hex;
+          colorIndicator.style.backgroundColor = hex;
+        }
+      }
+
+      // Handle Toggle Click
+      toggleBtn.addEventListener('click', () => {
+        isEditMode = !isEditMode;
+        
+        if (isEditMode) {
+          // Enable Edit Mode
+          document.body.classList.add('is-editing');
+          toggleBtn.classList.replace('bg-plab-blue', 'bg-red-500');
+          toggleBtn.classList.replace('hover:bg-blue-600', 'hover:bg-red-600');
+          toggleText.textContent = "편집 모드 끄기";
+          
+          const elements = document.querySelectorAll(textSelectors);
+          elements.forEach(el => {
+            // Prevent making complex UI wrappers editable directly if they don't contain raw text.
+            if(el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'BR') || el.tagName === 'SPAN') {
+               el.setAttribute("contenteditable", "true");
+            }
+          });
+        } else {
+          // Disable Edit Mode
+          document.body.classList.remove('is-editing');
+          toggleBtn.classList.replace('bg-red-500', 'bg-plab-blue');
+          toggleBtn.classList.replace('hover:bg-red-600', 'hover:bg-blue-600');
+          toggleText.textContent = "편집 모드 켜기";
+          hideContextMenu();
+          activeElement = null;
+          
+          const elements = document.querySelectorAll('[contenteditable="true"]');
+          elements.forEach(el => {
+             el.removeAttribute("contenteditable");
+          });
+        }
+      });
+
+      // Handle Clicks on document to show/hide menu
+      document.addEventListener('click', (e) => {
+        if (!isEditMode) return;
+        
+        // If clicked inside the context menu, do nothing (prevent hiding)
+        if (contextMenu.contains(e.target)) return;
+        
+        // If clicked on an editable element, show menu
+        if (e.target.hasAttribute('contenteditable')) {
+          showContextMenu(e.target);
+        } else if (e.target.closest('[contenteditable="true"]')) {
+          showContextMenu(e.target.closest('[contenteditable="true"]'));
+        } else {
+          // Clicked somewhere else, hide menu
+          hideContextMenu();
+        }
+      });
+      
+      // Prevent Enter key from creating new DOM elements inside editable tags, just create a BR
+      document.addEventListener('keydown', (e) => {
+        if (isEditMode && e.key === 'Enter' && e.target.hasAttribute('contenteditable')) {
+          e.preventDefault();
+          document.execCommand('insertHTML', false, '<br>');
+        }
+      });
+
     });
   </script>
 </body>
