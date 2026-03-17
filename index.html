@@ -150,29 +150,31 @@
     <div class="absolute top-0 right-0 w-64 h-64 bg-slate-800/30 rounded-full blur-[80px] -z-10"></div>
     
     <div class="mb-10 text-center md:text-left">
-      <h2 class="text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4 font-black keep-together leading-tight">
-        レベルデータで、<br>もっと<span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-plab-blue/40 after:-z-10">面白い</span>フットサル
+      <h2 class="text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4 font-black keep-together leading-tight break-keep">
+        レベルデータで、もっと<br class="hidden md:block">
+        <span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-plab-blue/40 after:-z-10 mt-2 sm:mt-0">面白い</span>フットサル
       </h2>
-      <p class="text-plab-light/80 text-[clamp(1rem,2.5vw,1.125rem)] leading-relaxed max-w-2xl">
-        90万人のデータで検証されたレベルシステム。<br>初級・中級など、レベルの近い人同士でより楽しいプレーが可能！
+      <p class="text-plab-light/80 text-[clamp(1rem,2.5vw,1.125rem)] leading-relaxed max-w-2xl break-keep">
+        90万人のデータで検証されたレベルシステム。<br>
+        初級・中級など、レベルの近い人同士でより楽しいプレーが可能！
       </p>
     </div>
     
-    <div class="flex flex-col md:flex-row gap-8 items-center">
+    <div class="flex flex-col md:flex-row gap-8 items-stretch">
       <!-- Image placeholder -->
-      <div class="img-container w-full md:w-1/2 shadow-2xl ring-1 ring-white/10 order-1 md:order-2">
-        <img src="Images/1%20レベル.jpg" alt="Level System" class="w-full h-auto object-cover rounded-2xl">
+      <div class="img-container w-full md:w-1/2 shadow-2xl ring-1 ring-white/10 order-1 md:order-2 h-auto flex">
+        <img src="Images/1%20レベル.jpg" alt="Level System" class="w-full h-full object-cover object-[center_30%] rounded-2xl min-h-[300px]">
       </div>
 
       <!-- Features -->
-      <div class="space-y-6 w-full md:w-1/2 order-2 md:order-1">
+      <div class="space-y-6 w-full md:w-1/2 order-2 md:order-1 flex flex-col justify-center">
         <div class="glass p-6 rounded-2xl flex items-start gap-5 transition-transform hover:-translate-y-1">
           <div class="w-12 h-12 rounded-full bg-plab-blue/20 flex items-center justify-center shrink-0 mt-1 ring-1 ring-plab-blue/40">
             <svg class="w-6 h-6 text-plab-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
           </div>
           <div>
-            <h3 class="text-lg font-bold text-white mb-2">実力が拮抗するチーム分け</h3>
-            <p class="text-base text-plab-gray leading-relaxed">客観的なレベルをもとにチームを分け、最初から最後まで3チームが接戦！</p>
+            <h3 class="text-lg font-bold text-white mb-2 break-keep">実력이 拮抗するチーム分け</h3>
+            <p class="text-base text-plab-gray leading-relaxed break-keep">客観的なレベルをもとにチームを分け、最初から最後まで3チームが接戦！</p>
           </div>
         </div>
         
@@ -181,8 +183,8 @@
             <svg class="w-6 h-6 text-plab-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
           </div>
           <div>
-            <h3 class="text-lg font-bold text-white mb-2">成長を可視化</h3>
-            <p class="text-base text-plab-gray leading-relaxed">データが蓄積され、自分の成長過程を目で確認可能！</p>
+            <h3 class="text-lg font-bold text-white mb-2 break-keep">成長を可視化</h3>
+            <p class="text-base text-plab-gray leading-relaxed break-keep">データが蓄積され、自分の成長過程を目で確認可能！</p>
           </div>
         </div>
       </div>
@@ -195,18 +197,18 @@
   <section class="py-16 px-6 bg-slate-900/50 reveal">
     <div class="max-w-screen-xl mx-auto w-full">
       <div class="mb-10 text-center md:text-left">
-        <h2 class="text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4 font-black keep-together leading-tight">
-          PLAB独自の<br><span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-slate-500/40 after:-z-10">ローテーション</span>システム
+        <h2 class="text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4 font-black keep-together leading-tight break-keep">
+          PLAB独自の<wbr><span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-slate-500/40 after:-z-10">ローテーション</span>システム
         </h2>
-        <p class="text-plab-light/80 text-[clamp(1rem,2.5vw,1.125rem)] max-w-2xl md:mx-0 mx-auto">
-          4チームではなく「3チーム制」で圧倒的な運動量。同じ料金を払うなら、PLABが断然合理的な選択。
+        <p class="text-plab-light/80 text-[clamp(1rem,2.5vw,1.125rem)] max-w-2xl md:mx-0 mx-auto break-keep">
+          4チームではなく「3チーム制」で圧倒的な運動量。<br class="hidden md:block">同じ料金を払うなら、PLABが断然合理的な選択。
         </p>
       </div>
 
-      <div class="flex flex-col md:flex-row gap-8 items-center">
+      <div class="flex flex-col md:flex-row gap-8 items-stretch">
         <!-- Image -->
-        <div class="img-container w-full md:w-1/2 shadow-lg order-1">
-          <img src="Images/2%20ロテーション.jpg" alt="Rotation System" class="w-full h-auto object-cover rounded-2xl">
+        <div class="img-container w-full md:w-1/2 shadow-lg order-1 h-auto flex">
+          <img src="Images/2%20ロテーション.jpg" alt="Rotation System" class="w-full h-full object-cover object-[center_30%] rounded-2xl min-h-[300px]">
         </div>
 
         <!-- Comparison Table & Content -->
@@ -253,9 +255,9 @@
             </div>
           </div>
           
-          <div class="mt-8 flex items-start gap-4 bg-slate-800/80 border border-slate-700 p-6 rounded-2xl text-base">
+          <div class="mt-8 flex items-start gap-4 bg-slate-800/80 border border-slate-700 p-6 rounded-2xl text-base h-full max-h-[120px]">
             <span class="text-2xl shrink-0 mt-1">🏃</span>
-            <p class="text-white leading-relaxed">体系的なローテーションと時間管理で、<strong class="text-white relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-slate-500/50 after:-z-10">無駄なくスピーディーな進行</strong>を実現します。</p>
+            <p class="text-white leading-relaxed break-keep">体系的なローテーション과 時間管理で、<strong class="text-white relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-slate-500/50 after:-z-10">無駄なくスピーディーな進行</strong>を実現します。</p>
           </div>
         </div>
       </div>
@@ -272,37 +274,37 @@
       <div class="inline-block px-4 py-1.5 mb-4 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
         Culture
       </div>
-      <h2 class="text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4 font-black keep-together leading-tight">
+      <h2 class="text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4 font-black keep-together leading-tight break-keep">
         実力よりマナー重視の <br class="md:hidden"><span class="text-white relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-slate-500/40 after:-z-10">POM</span>
       </h2>
       <p class="font-medium text-white/90 mb-2 text-[clamp(1.125rem,3vw,1.25rem)]">Plaber of the Match</p>
       <p class="text-plab-light/80 text-[clamp(1rem,2.5vw,1.125rem)]">誰でも狙える独自のMVP</p>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-12 items-center">
+    <div class="flex flex-col md:flex-row gap-12 items-stretch">
       <!-- Image -->
-      <div class="img-container w-full md:w-1/2 ring-1 ring-white/10 rounded-2xl order-1 md:order-2">
-        <img src="Images/3%20マーナ.jpg" alt="POM Culture" class="w-full h-auto object-cover rounded-2xl">
+      <div class="img-container w-full md:w-1/2 ring-1 ring-white/10 rounded-2xl order-1 md:order-2 h-auto flex">
+        <img src="Images/3%20マーナ.jpg" alt="POM Culture" class="w-full h-full object-cover object-[center_30%] rounded-2xl min-h-[300px]">
       </div>
 
       <!-- Timeline steps -->
-      <div class="relative pl-8 space-y-10 border-l-2 border-slate-700 ml-4 w-full md:w-1/2 order-2 md:order-1">
+      <div class="relative pl-8 space-y-10 border-l-2 border-slate-700 ml-4 w-full md:w-1/2 order-2 md:order-1 flex flex-col justify-center my-6">
         <div class="relative">
           <div class="absolute -left-[41px] top-1 w-6 h-6 rounded-full bg-plab-dark border-4 border-slate-500"></div>
-          <h3 class="text-xl font-bold text-white mb-3">良い雰囲気を作った人が「今日の主役」</h3>
-          <p class="text-base text-plab-gray leading-relaxed">上手さではなくマナー最優先。一緒にプレーする仲間をリスペクトし、良い雰囲気を作ったプレイヤーを評価します。</p>
+          <h3 class="text-xl font-bold text-white mb-3 break-keep">良い雰囲気を作った人が「今日の主役」</h3>
+          <p class="text-base text-plab-gray leading-relaxed break-keep">上手さではなくマナー最優先。<br class="hidden lg:block">一緒にプレーする仲間をリスペクトし、良い雰囲気を作ったプレイヤーを評価します。</p>
         </div>
         
         <div class="relative">
           <div class="absolute -left-[41px] top-1 w-6 h-6 rounded-full bg-plab-dark border-4 border-slate-500"></div>
-          <h3 class="text-xl font-bold text-white mb-3">マネージャーが選定＆嬉しいお知らせ</h3>
-          <p class="text-base text-plab-gray leading-relaxed">専門のマネージャーがPOMを選定。選ばれたプレーヤーにはLINEとメールで嬉しい通知が届きます。</p>
+          <h3 class="text-xl font-bold text-white mb-3 break-keep">マネージャーが選定＆嬉しいお知らせ</h3>
+          <p class="text-base text-plab-gray leading-relaxed break-keep">専門のマネージャーがPOMを選定。<br class="hidden lg:block">選ばれたプレーヤーにはLINEとメールで嬉しい通知が届きます。</p>
         </div>
         
         <div class="relative">
           <div class="absolute -left-[41px] top-1 w-6 h-6 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.2)]"></div>
-          <h3 class="text-xl font-bold text-white mb-3">誇らしい記録をシェア</h3>
-          <p class="text-base text-plab-gray leading-relaxed">試合後、詳細ページで今日のPOMをチェック！美しいカード形式の記録をそのままSNSへシェアできます。</p>
+          <h3 class="text-xl font-bold text-white mb-3 break-keep">誇らしい記録をシェア</h3>
+          <p class="text-base text-plab-gray leading-relaxed break-keep">試合後、詳細ページで今日のPOMをチェック！<br class="hidden lg:block">美しいカード形式の記録をそのままSNSへシェアできます。</p>
         </div>
       </div>
     </div>
@@ -324,22 +326,22 @@
         <div class="glass p-8 rounded-2xl flex flex-col md:flex-row items-center gap-6 transform transition-transform hover:-translate-y-2 text-center md:text-left">
           <div class="text-5xl md:text-4xl drop-shadow-lg">📱</div>
           <div>
-            <h3 class="font-bold text-white text-xl md:text-lg lg:text-xl mb-2">LINEでわずか10秒！</h3>
-            <p class="text-sm md:text-base text-plab-gray">面倒な入力なしの超カンタン登録</p>
+            <h3 class="font-bold text-white text-xl md:text-lg lg:text-xl mb-2 break-keep">LINEでわずか10秒！</h3>
+            <p class="text-sm md:text-base text-plab-gray break-keep">面倒な入力なしの超カンタン登録</p>
           </div>
         </div>
         <div class="glass p-8 rounded-2xl flex flex-col md:flex-row items-center gap-6 transform transition-transform hover:-translate-y-2 text-center md:text-left">
           <div class="text-5xl md:text-4xl drop-shadow-lg">💳</div>
           <div>
-            <h3 class="font-bold text-white text-xl md:text-lg lg:text-xl mb-2">スマートキャッシュレス</h3>
-            <p class="text-sm md:text-base text-plab-gray">現地에서의 현금 결제는 불필요. 사전 결제</p>
+            <h3 class="font-bold text-white text-xl md:text-lg lg:text-xl mb-2 break-keep">スマートキャッシュレス</h3>
+            <p class="text-sm md:text-base text-plab-gray break-keep">現地에서의 현금 결제는 불필요. 사전 결제</p>
           </div>
         </div>
         <div class="glass p-8 rounded-2xl flex flex-col md:flex-row items-center gap-6 transform transition-transform hover:-translate-y-2 border border-white/10 text-center md:text-left">
           <div class="text-5xl md:text-4xl drop-shadow-lg">👆</div>
           <div>
-            <h3 class="font-bold text-white text-xl md:text-lg lg:text-xl mb-2">たった「3タップ」で参加確定</h3>
-            <p class="text-sm md:text-base text-plab-gray">行きたい試合を見つけてすぐ予約完了</p>
+            <h3 class="font-bold text-white text-xl md:text-lg lg:text-xl mb-2 break-keep">たった「3タップ」で参加確定</h3>
+            <p class="text-sm md:text-base text-plab-gray break-keep">行きたい試合を見つけてすぐ予約完了</p>
           </div>
         </div>
       </div>
