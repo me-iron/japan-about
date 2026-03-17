@@ -124,7 +124,7 @@
     </div>
     
     <!-- Hero Content -->
-    <div class="relative z-10 w-full max-w-4xl mx-auto reveal active flex flex-col items-center text-center lg:items-start lg:text-left pt-20 sm:pt-32 px-4 md:px-8">
+    <div class="relative z-10 w-full max-w-4xl mx-auto reveal active flex flex-col items-center text-center pt-20 sm:pt-32 px-4 md:px-8">
       
       <h1 class="text-[clamp(1.5rem,5vw,3rem)] font-black tracking-tight leading-tight w-full drop-shadow-xl text-white break-keep mb-2">
         韓国で圧倒的に選ばれる
@@ -176,7 +176,7 @@
   <section class="py-16 px-6 relative reveal w-full max-w-4xl mx-auto md:px-8">
     <div class="absolute top-0 right-0 w-64 h-64 bg-slate-800/30 rounded-full blur-[80px] -z-10"></div>
     
-    <div class="mb-8 w-full text-center md:text-left">
+    <div class="mb-8 w-full text-center">
       <h2 class="text-[clamp(1.2rem,3.5vw,2rem)] font-bold mb-4 font-black break-keep text-white">
         レベルデータで、もっと面白いフットサル
       </h2>
@@ -220,7 +220,7 @@
        ========================================== -->
   <section class="py-16 px-6 bg-slate-900/50 reveal md:px-8">
     <div class="max-w-4xl mx-auto w-full">
-      <div class="mb-8 w-full text-center md:text-left">
+      <div class="mb-8 w-full text-center">
         <h2 class="text-[clamp(1.2rem,3.5vw,2rem)] font-bold mb-4 font-black break-keep text-white">
           PLAB独自のローテーションシステム
         </h2>
@@ -305,7 +305,7 @@
   <section class="py-16 px-6 relative reveal max-w-4xl mx-auto w-full md:px-8">
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-slate-800/20 rounded-full blur-[80px] -z-10"></div>
     
-    <div class="mb-8 w-full text-center md:text-left">
+    <div class="mb-8 w-full text-center">
       <div class="inline-block px-3 py-1 mb-3 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-wider break-keep">
         PLAB個人参加フットサル
       </div>
@@ -475,6 +475,57 @@
 
       // Elements that should become editable
       const textSelectors = "h1, h2, h3, p, span, div.flex-1 > p";
+      const editableNodes = [];
+      
+      // Initialize edit IDs and load saved data
+      document.querySelectorAll(textSelectors).forEach((el, index) => {
+        if(el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'BR') || el.tagName === 'SPAN') {
+          el.setAttribute("data-edit-id", "edit-node-" + index);
+          editableNodes.push(el);
+          
+          // Restore saved state from localStorage
+          const savedStr = localStorage.getItem("edit-node-" + index);
+          if (savedStr) {
+            try {
+              const saved = JSON.parse(savedStr);
+              if (saved.html !== undefined) el.innerHTML = saved.html;
+              if (saved.color) el.style.color = saved.color;
+              
+              if (saved.align) {
+                el.classList.remove('text-left', 'text-center', 'text-right');
+                el.classList.add(saved.align);
+              }
+            } catch(e) {
+              console.error("Failed to restore saved state", e);
+            }
+          }
+        }
+      });
+
+      // Function to persist a single node's state
+      function saveNodeState(el) {
+        const id = el.getAttribute("data-edit-id");
+        if (!id) return;
+        
+        let align = '';
+        if (el.classList.contains('text-left')) align = 'text-left';
+        if (el.classList.contains('text-center')) align = 'text-center';
+        if (el.classList.contains('text-right')) align = 'text-right';
+        
+        const state = {
+          html: el.innerHTML,
+          color: el.style.color,
+          align: align
+        };
+        localStorage.setItem(id, JSON.stringify(state));
+      }
+
+      // Auto-save text edits
+      document.addEventListener('input', (e) => {
+        if (isEditMode && e.target.hasAttribute('contenteditable')) {
+          saveNodeState(e.target);
+        }
+      });
       
       // Update color indicator when picker changes
       colorPicker.addEventListener('input', (e) => {
@@ -482,6 +533,7 @@
         colorIndicator.style.backgroundColor = color;
         if (activeElement) {
           activeElement.style.color = color;
+          saveNodeState(activeElement);
         }
       });
 
@@ -503,6 +555,7 @@
           
           // Highlight active button
           updateActiveAlignButton(alignClass);
+          saveNodeState(activeElement);
         });
       });
 
@@ -564,12 +617,8 @@
           toggleBtn.classList.replace('hover:bg-blue-600', 'hover:bg-red-600');
           toggleText.textContent = "편집 모드 끄기";
           
-          const elements = document.querySelectorAll(textSelectors);
-          elements.forEach(el => {
-            // Prevent making complex UI wrappers editable directly if they don't contain raw text.
-            if(el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'BR') || el.tagName === 'SPAN') {
-               el.setAttribute("contenteditable", "true");
-            }
+          editableNodes.forEach(el => {
+             el.setAttribute("contenteditable", "true");
           });
         } else {
           // Disable Edit Mode
@@ -580,8 +629,7 @@
           hideContextMenu();
           activeElement = null;
           
-          const elements = document.querySelectorAll('[contenteditable="true"]');
-          elements.forEach(el => {
+          editableNodes.forEach(el => {
              el.removeAttribute("contenteditable");
           });
         }
